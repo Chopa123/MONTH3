@@ -7,7 +7,5 @@ async def echo(message: types.Message):
     else:
         await bot.send_message(message.from_user.id, message.text)
 
-de fdgjngjn
-
 def register_handlers_extra(dp:Dispatcher):
     dp.register_message_handler(echo)

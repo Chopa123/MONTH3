@@ -1,10 +1,10 @@
 import random
 from aiogram import types
-from config import bot, Dispatcher, ADMIN
+from config import bot, Dispatcher, ADMINS
 
 
 async def game(message: types.Message):
-    if message.from_user.id in ADMIN and message.text.startswith('game'):
+    if message.from_user.id in ADMINS and message.text.startswith('game'):
         emoji = ['🎲', '🎯', '⚽️', '🏀', '🎰', '🎳']
         random_emoji = random.choice(emoji)
         await bot.send_dice(message.chat.id, emoji=random_emoji)

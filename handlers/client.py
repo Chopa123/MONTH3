@@ -1,12 +1,14 @@
 from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import bot, dp
+import time
 
 
 async def start_command(message: types.Message):
     await message.answer(f'Hello {message.from_user.full_name}!')
 
-import time
+
+
 
 async def dice(message: types.Message):
     a = await bot.send_dice(message.chat.id, emoji='🎲')
@@ -20,6 +22,7 @@ async def dice(message: types.Message):
         await bot.send_message(message.from_user.id, 'Ничья')
     else:
         await bot.send_message(message.from_user.id, 'Вы выиграли')
+
 
 async def pin(message: types.Message):
     if message.reply_to_message:
