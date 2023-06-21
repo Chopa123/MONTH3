@@ -22,7 +22,7 @@ cancel_markup = ReplyKeyboardMarkup(
     resize_keyboard=True,
     one_time_keyboard=True,
 )
-cancel_button = KeyboardButton("Отмена")
+cancel_button = KeyboardButton("отмена")
 cancel_markup.add(cancel_button)
 
 submit_markup = ReplyKeyboardMarkup(

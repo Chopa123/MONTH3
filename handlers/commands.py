@@ -1,14 +1,19 @@
+from aiogram.dispatcher.filters import Text
+
 from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import bot, dp
 import time
+from database.dp import sql_command_random
 
 
 async def start_command(message: types.Message):
     await message.answer(f'Hello {message.from_user.full_name}!')
 
 
-
+async def get_random_user(message: types.Message) -> None:
+    random_user = await sql_command_random()
+    await message.answer(random_user)
 
 async def dice(message: types.Message):
     a = await bot.send_dice(message.chat.id, emoji='🎲')
@@ -56,8 +61,10 @@ async def quiz_1(message: types.message):
     )
 
 
+
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(start_command, commands=['start'])
     dp.register_message_handler(quiz_1, commands=['quiz'])
     dp.register_message_handler(pin, commands=['pin'], commands_prefix='!')
     dp.register_message_handler(dice, commands=['dice'])
+    dp.register_message_handler(get_random_user, Text(equals="get", ignore_case=True))

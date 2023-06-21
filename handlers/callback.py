@@ -2,6 +2,7 @@ from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import bot, dp
 
+
 async def quiz_2(call: types.CallbackQuery):
     markup = InlineKeyboardMarkup()
     button_call_1 = InlineKeyboardButton("Next", callback_data="button_call_2")
@@ -26,8 +27,8 @@ async def quiz_2(call: types.CallbackQuery):
         reply_markup=markup
     )
 
-async def quiz_3(call: types.CallbackQuery):
 
+async def quiz_3(call: types.CallbackQuery):
     question = "Сколько человек каждый день становятся миллионерами?"
     answers = [
         "2000",
@@ -45,7 +46,6 @@ async def quiz_3(call: types.CallbackQuery):
         correct_option_id=2,
         open_period=20,
     )
-
 
 
 def register_handlers_callback(dp: Dispatcher):
