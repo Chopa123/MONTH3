@@ -40,9 +40,7 @@ async def sql_command_all():
 
 
 async def sql_command_all_ids():
-    return cursor.execute("SELECT telegram_id FROM mentors").fetchall()
-
-
+    return cursor.execute("SELECT ID FROM mentors").fetchall()
 async def sql_command_delete(user_id):
     cursor.execute("DELETE FROM anketa WHERE id = ?", (user_id,))
     db.commit()
