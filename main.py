@@ -9,7 +9,6 @@ callback.register_handlers_callback(dp)
 fsmMenu.register_mentor(dp)
 extra.register_handlers_extra(dp)
 
-
 async def on_startup(dp):
     sql_create()
     await bot.send_message(ADMINS[0], "Hello!")

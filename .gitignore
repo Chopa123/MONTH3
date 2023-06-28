@@ -1,5 +1,8 @@
-.env
 venv
+.env
+
+bot.sqlite3
+
 .idea
 .vscode
 __pycache__/

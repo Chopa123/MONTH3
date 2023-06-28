@@ -5,11 +5,9 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import bot, dp
 import time
 from database.dp import sql_command_random
-
-
+from parser.movies import get_data
 async def start_command(message: types.Message):
     await message.answer(f'Hello {message.from_user.full_name}!')
-
 
 async def get_random_user(message: types.Message) -> None:
     random_user = await sql_command_random()
@@ -28,13 +26,11 @@ async def dice(message: types.Message):
     else:
         await bot.send_message(message.from_user.id, 'Вы выиграли')
 
-
 async def pin(message: types.Message):
     if message.reply_to_message:
         await bot.pin_chat_message(message.chat.id, message.reply_to_message.message_id)
     else:
         await bot.send_message(message.chat.id, 'Это должно быть ответом на сообщение')
-
 
 async def quiz_1(message: types.message):
     markup = InlineKeyboardMarkup()
@@ -59,6 +55,15 @@ async def quiz_1(message: types.message):
         open_period=15,
         reply_markup=markup
     )
+async def get_data(message: types.message)-> None:
+    movies= parser()
+    for i in movies:
+        await message.answer(
+            f"{['url']}\n\n"
+            f"{['tile']}\n"
+            f"{['subtitle']}\n"
+
+        )
 
 
 
@@ -68,3 +73,4 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(pin, commands=['pin'], commands_prefix='!')
     dp.register_message_handler(dice, commands=['dice'])
     dp.register_message_handler(get_random_user, Text(equals="get", ignore_case=True))
+    dp.register_message_handler(get_data, commands=['movies'])

@@ -1,4 +1,3 @@
-# =====================================================================================================================
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
@@ -66,7 +65,6 @@ async def load_group(message: types.Message, state: FSMContext):
     await FSMadmin.next()
     await message.answer('Всё верно ?', reply_markup=submit_markup)
 
-
 async def load_submit(message: types.Message, state: FSMContext):
     if message.text.lower() == 'да':
         await sql_command_start(state)
@@ -76,13 +74,11 @@ async def load_submit(message: types.Message, state: FSMContext):
         await message.answer('Ну ладно :(', reply_markup=start_markup)
         await state.finish()
 
-
 async def cancel_reg(message: types.Message, state: FSMContext):
     current_state = await state.get_state()
     if current_state is not None:
         await state.finish()
         await message.answer('Canceled', reply_markup=start_markup)  # Чтоб после отмены сразу показывались все кнпопки
-
 
 def register_mentor(dp: Dispatcher):
     dp.register_message_handler(cancel_reg, state='*', commands=['cancel'])
