@@ -4,10 +4,12 @@ import logging
 from handlers import commands, callback, extra, fsmMenu, notifications
 from database.dp import sql_create
 
+
 commands.register_handlers_client(dp)
 callback.register_handlers_callback(dp)
 fsmMenu.register_mentor(dp)
 extra.register_handlers_extra(dp)
+
 
 async def on_startup(dp):
     sql_create()
