@@ -1,7 +1,7 @@
 from aiogram.utils import executor
 from config import dp, bot, ADMINS
 import logging
-from handlers import commands, callback, extra, fsmMenu, notifications
+from handlers import commands, callback, extra, fsmMenu, notifications, stickers
 from database.dp import sql_create
 
 
